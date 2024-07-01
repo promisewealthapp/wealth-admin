@@ -6,7 +6,7 @@ import { FaNairaSign } from "react-icons/fa6";
 import { Avatar } from "antd";
 import ViewCrowdfunding from "../components/manage-croudfunding/ViewCrowdfunding";
 import { useDeleteCrowdFundMutation, useEditCrowdFundMutation, useGetCrowdFundsQuery } from "../redux/features/crowdFund/crowdFundApi";
-import { CrowdFund, Location, ResponseSuccessType } from "../types/common";
+import { CrowdFund, Location, Order, ResponseSuccessType } from "../types/common";
 import AppTable from "../components/ui/AppTable";
 import { useEffect, useMemo, useState } from "react";
 import { toast } from "react-toastify";
@@ -161,20 +161,23 @@ const ManageCrowdfunding = () => {
     },
     {
       title: "",
-      dataIndex: "images",
+      dataIndex: "Orders",
       className: "min-w-[80px]",
-      render: (images: string[]) => {
+      render: (Orders: Order[]) => {
         return (
           <div className="flex flex-col justify-end h-20 2xl:h-24">
             <p className="text-[#6B6B6F] text-sm">Donor</p>
             <div className="pt-1 flex items-center gap-1">
-              <Avatar.Group size={"small"}>
-                {
-                  images.slice(0, 3).map(img => (
-                    <Avatar src={img} />
-                  ))
-                }
-              </Avatar.Group>
+              {Orders[0]?.orderBy?.profileImg ?
+                <Avatar.Group size={"small"}>
+                  {
+                    Orders.slice(0, 3).map(order => (
+                      <Avatar src={order?.orderBy?.profileImg} />
+                    ))
+                  }
+                </Avatar.Group> :
+                <img src="/images/0.jpg" alt="" className="size-5 rounded-full" />
+              }
             </div>
           </div>
         );

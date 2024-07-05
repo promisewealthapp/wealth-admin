@@ -30,7 +30,6 @@ const AppTable = ({
   setPage,
   tabs
 }: TTableProps) => {
-
   const [input, setInput] = useState("");
   const debounceInput = useDebounce(input, 500);
 
@@ -43,12 +42,20 @@ const AppTable = ({
   return (
     <div className="rounded-2xl w-full  border border-[#E6E6E7] ">
       {/* Table header here  */}
-      {!button && !headerText && !inputPlaceholder ? <></> :
+      {!button && !headerText && !inputPlaceholder ? (
+        <></>
+      ) : (
         <div className="bg-[#F8F8F8] w-full flex gap-2 lg:gap-0 flex-col md:flex-row justify-between p-2 lg:p-3 rounded-t-2xl">
-          <div className={`flex md:items-center justify-between ${inputPlaceholder ? "md:w-3/5" : "md:w-1/5"}`}>
+          <div
+            className={`flex md:items-center justify-between ${
+              inputPlaceholder ? "md:w-3/5" : "md:w-1/5"
+            }`}
+          >
             <h1 className="md:text-lg lg:text-xl font-medium">{headerText}</h1>
             {inputPlaceholder && (
-              <div className={`bg-white w-1/2 lg:w-3/5 rounded-md px-1 md:px-2.5 py-1 md:py-1.5 lg:p-2.5 flex items-center mr-4`}>
+              <div
+                className={`bg-white w-1/2 lg:w-3/5 rounded-md px-1 md:px-2.5 py-1 md:py-1.5 lg:p-2.5 flex items-center mr-4`}
+              >
                 <LuSearch className="text-textDark text-lg" />
                 <input
                   type="text"
@@ -61,43 +68,45 @@ const AppTable = ({
             )}
           </div>
           {tabs}
-          {button &&
+          {button && (
             <div className="lg:w-2/5 flex  items-center justify-end">
               {button}
             </div>
-          }
+          )}
         </div>
-      }
+      )}
 
-      <div className='overflow-x-auto'>
+      <div className="overflow-x-auto">
         {infoQuery && (
           <RenderReduxData
-            loadingComponent={
-              <AppTableSkeleton />
-            }
+            loadingComponent={<AppTableSkeleton />}
             info={infoQuery}
             showData={(data) => {
-              console.warn(data);
               return (
                 <Table
                   showHeader={header}
                   columns={columns}
-                  dataSource={Array.isArray(data?.data) ? data?.data : [data?.data]}
+                  dataSource={
+                    Array.isArray(data?.data) ? data?.data : [data?.data]
+                  }
                   rowKey="id"
-                  pagination={setPage ? {
-                    onChange: (value) => setPage(value),
-                    pageSize: data?.meta?.limit,
-                    total: data?.meta?.total,
-                    current: data?.meta?.page,
-                    showSizeChanger: false
-                  } : false}
+                  pagination={
+                    setPage
+                      ? {
+                          onChange: (value) => setPage(value),
+                          pageSize: data?.meta?.limit,
+                          total: data?.meta?.total,
+                          current: data?.meta?.page,
+                          showSizeChanger: false
+                        }
+                      : false
+                  }
                 />
               );
             }}
           />
         )}
       </div>
-
     </div>
   );
 };

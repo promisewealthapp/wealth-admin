@@ -12,7 +12,7 @@ export const bankApi = apiSlice.injectEndpoints({
       providesTags: [tagTypes.bank],
     }),
     getBankById: builder.query({
-      query: (id) => `/banks/${id}`,
+      query: (id) => `/bank/${id}`,
     }),
     addBank: builder.mutation({
       query: (info) => {

@@ -28,6 +28,7 @@ import ManageLocation from "../pages/ManageLocation";
 import ManageAnalytics from "../pages/ManageAnalytics";
 import SuperAdminLayout from "../layouts/SuperAdminLayout";
 import PrivateLayout from "../layouts/PrivateLayout";
+import AddCurrentLocation from "../pages/AddCurrentLocation";
 
 export const router = createBrowserRouter([
   {
@@ -101,6 +102,12 @@ export const router = createBrowserRouter([
         path: "/manage-current-location",
         element: <PrivateLayout>
           <ManageCurrentLocation />
+        </PrivateLayout>,
+      },
+      {
+        path: "/add-current-location",
+        element: <PrivateLayout>
+          <AddCurrentLocation />
         </PrivateLayout>,
       },
       {

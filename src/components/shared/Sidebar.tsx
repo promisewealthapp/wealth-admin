@@ -61,6 +61,7 @@ const Sidebar = () => {
           path: "/manage-current-location",
           Icon: HiOutlineBuildingOffice2,
           label: "Manage Current Location",
+          relativePath: "/add-current-location",
         },
         {
           path: "/manage-flipping",

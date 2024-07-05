@@ -11,9 +11,12 @@ import { IoIosArrowDown } from "react-icons/io";
 import { ColumnsType } from "antd/es/table";
 import { Order, ResponseSuccessType } from "../types/common";
 import { toast } from "react-toastify";
+import ViewUser from "../components/manage-user/ViewUser";
+import ViewBankInfo from "../components/bank-account/ViewBankInfo";
 
 const ManageOrder = () => {
-    const [page, setPage] = useState(1)
+    const [page, setPage] = useState(1);
+    const [search, setSearch] = useState("");
     const [status, setStatus] = useState("");
     const [refName, setRefName] = useState("crowdFund");
 
@@ -26,6 +29,7 @@ const ManageOrder = () => {
             page,
             refName,
             status: status.length ? status : "",
+            searchTerm: search.length ? search : "",
         };
         const queryString = Object.keys(info).reduce((pre, key: string) => {
             const value = info[key as keyof typeof info];
@@ -35,7 +39,7 @@ const ManageOrder = () => {
             return pre;
         }, "");
         return queryString;
-    }, [page, refName, status]);
+    }, [page, refName, search, status]);
 
     const infoQuery = useGetOrderQuery(queryString);
 
@@ -101,6 +105,50 @@ const ManageOrder = () => {
                 );
             },
         },
+        {
+            title: "",
+            dataIndex: "orderBy",
+            className: "min-w-[180px]",
+            render: (orderBy: any, fullObj: any) => {
+                return (
+                    <div className="flex flex-col justify-end h-20 2xl:h-24">
+                        <p className="text-[#6B6B6F] text-sm">Order By</p>
+                        <div className="pt-1 flex items-center gap-1">
+                            <div className='flex items-center gap-1'>
+                                <img src={orderBy?.profileImg} alt="" className="rounded-full size-8" />
+                                <AppModal title="User Details" button={
+                                    <p className="cursor-pointer">{orderBy?.name}</p>
+                                } >
+                                    <ViewUser footerButton={false} record={orderBy} />
+                                </AppModal>
+                            </div>
+                        </div>
+                    </div>
+                );
+            },
+        },
+        {
+            title: "",
+            dataIndex: "paymentType",
+            className: "min-w-[180px]",
+            render: (paymentType: string, fullObj: any) => {
+                return (
+                    <div className="flex flex-col justify-end h-20 2xl:h-24">
+                        <p className="text-[#6B6B6F] text-sm">Payment By</p>
+                        <div className="pt-1 flex items-center gap-1">
+                            <div className='flex items-center gap-1'>
+                                <AppModal title="Bank Account Details" button={
+                                    <p className="cursor-pointer">Wealth Bank</p>
+                                } >
+                                    <ViewBankInfo footerButton={false} wealthBankId={fullObj?.wealthBankId} />
+                                </AppModal>
+                            </div>
+                        </div>
+                    </div>
+                );
+            },
+        },
+
         {
             title: "",
             dataIndex: refName,
@@ -184,7 +232,7 @@ const ManageOrder = () => {
     ];
 
     if (refName === "crowdFund") {
-        columns.splice(2, 0, {
+        columns.splice(3, 0, {
             title: "",
             dataIndex: refName,
             className: "min-w-[100px]",
@@ -241,6 +289,8 @@ const ManageOrder = () => {
             header={false}
             columns={columns}
             infoQuery={infoQuery}
+            onInputChange={(text) => setSearch(text)}
+            inputPlaceholder="Search property"
             setPage={setPage}
             headerText="Order List"
             tabs={

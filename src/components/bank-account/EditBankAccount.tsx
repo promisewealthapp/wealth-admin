@@ -15,7 +15,7 @@ type TInputs = {
 }
 
 type TBankProps = {
-    record: Bank;
+    record?: Bank;
     closeModal?: () => void
 }
 
@@ -61,7 +61,7 @@ const EditBankAccount = ({ record, closeModal }: TBankProps) => {
 
     const onSubmit: SubmitHandler<TInputs> = async (data) => {
         const submitData = {
-            id: record.id, ...data, logoOfBank: logoOfBank || record.logoOfBank
+            id: record?.id, ...data, logoOfBank: logoOfBank || record?.logoOfBank
         }
 
         await editBankAccount(submitData).unwrap().then((res: any) => {
@@ -140,7 +140,7 @@ const EditBankAccount = ({ record, closeModal }: TBankProps) => {
                 <div className='flex flex-col text-textDark'>
                     <label htmlFor="name">Bank Name</label>
                     <AppSelect
-                        name={record?.name}
+                        name={record?.name || ""}
                         defaultValue="Bank of Nigeria"
                         control={control}
                         options={bankNameOptions} />

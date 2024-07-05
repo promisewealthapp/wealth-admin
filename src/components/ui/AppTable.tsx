@@ -48,7 +48,7 @@ const AppTable = ({
           <div className={`flex md:items-center justify-between ${inputPlaceholder ? "md:w-3/5" : "md:w-1/5"}`}>
             <h1 className="md:text-lg lg:text-xl font-medium">{headerText}</h1>
             {inputPlaceholder && (
-              <div className={`bg-white w-1/2 lg:w-3/5 rounded-md px-1 md:px-2.5 py-1 md:py-1.5 lg:p-2.5 flex items-center`}>
+              <div className={`bg-white w-1/2 lg:w-3/5 rounded-md px-1 md:px-2.5 py-1 md:py-1.5 lg:p-2.5 flex items-center mr-4`}>
                 <LuSearch className="text-textDark text-lg" />
                 <input
                   type="text"
@@ -77,7 +77,7 @@ const AppTable = ({
             }
             info={infoQuery}
             showData={(data) => {
-              // console.warn(data);
+              console.warn(data);
               return (
                 <Table
                   showHeader={header}

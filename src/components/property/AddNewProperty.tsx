@@ -15,12 +15,13 @@ type TAddNewPropertyState = {
 };
 
 const AddNewProperty = ({ propertyId, closeModal }: TAddNewPropertyState) => {
-  const [addPropertyState] = useAddPropertyStateMutation();
+  const [addPropertyState, { isLoading }] = useAddPropertyStateMutation();
 
   const {
     register,
     control,
     handleSubmit,
+    reset,
     formState: { errors }
   } = useForm<TInputs>();
 
@@ -29,7 +30,6 @@ const AddNewProperty = ({ propertyId, closeModal }: TAddNewPropertyState) => {
       ...data,
       propertyId
     };
-    console.log(submitData);
     await addPropertyState(submitData)
       .unwrap()
       .then((res: any) => {
@@ -39,6 +39,7 @@ const AddNewProperty = ({ propertyId, closeModal }: TAddNewPropertyState) => {
         } else {
           toast.success(res.message);
         }
+        reset();
         // if (closeModal) {
         //   //   closeModal();
         // }

@@ -29,6 +29,7 @@ import ManageAnalytics from "../pages/ManageAnalytics";
 import SuperAdminLayout from "../layouts/SuperAdminLayout";
 import PrivateLayout from "../layouts/PrivateLayout";
 import AddCurrentLocation from "../pages/AddCurrentLocation";
+import Promotion from "../pages/Promotion";
 
 export const router = createBrowserRouter([
   {
@@ -38,7 +39,11 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <SuperAdminLayout><Dashboard /></SuperAdminLayout>,
+        element: (
+          <SuperAdminLayout>
+            <Dashboard />
+          </SuperAdminLayout>
+        )
       },
       {
         path: "/manage-admins",
@@ -46,7 +51,7 @@ export const router = createBrowserRouter([
           <SuperAdminLayout>
             <ManageAdmins />
           </SuperAdminLayout>
-        ),
+        )
       },
       {
         path: "/make-admin",
@@ -54,7 +59,7 @@ export const router = createBrowserRouter([
           <SuperAdminLayout>
             <MakeAdmin />
           </SuperAdminLayout>
-        ),
+        )
       },
       {
         path: "/manage-champions",
@@ -62,7 +67,7 @@ export const router = createBrowserRouter([
           <SuperAdminLayout>
             <ManageChampions />
           </SuperAdminLayout>
-        ),
+        )
       },
       {
         path: "/make-champion",
@@ -70,7 +75,7 @@ export const router = createBrowserRouter([
           <SuperAdminLayout>
             <MakeChampion />
           </SuperAdminLayout>
-        ),
+        )
       },
       {
         path: "/manage-user",
@@ -78,43 +83,63 @@ export const router = createBrowserRouter([
           <SuperAdminLayout>
             <ManageUser />
           </SuperAdminLayout>
-        ),
+        )
+      },
+      {
+        path: "/promotion",
+        element: (
+          <PrivateLayout>
+            <Promotion />
+          </PrivateLayout>
+        )
       },
       {
         path: "/manage-crowdfunding",
-        element: <PrivateLayout>
-          <ManageCrowdfunding />
-        </PrivateLayout>,
+        element: (
+          <PrivateLayout>
+            <ManageCrowdfunding />
+          </PrivateLayout>
+        )
       },
       {
         path: "/add-crowdfunding",
-        element: <PrivateLayout>
-          <AddCrowdfunding />
-        </PrivateLayout>,
+        element: (
+          <PrivateLayout>
+            <AddCrowdfunding />
+          </PrivateLayout>
+        )
       },
       {
         path: "/edit-crowdfunding/:id",
-        element: <PrivateLayout>
-          <EditCrowdfunding />
-        </PrivateLayout>,
+        element: (
+          <PrivateLayout>
+            <EditCrowdfunding />
+          </PrivateLayout>
+        )
       },
       {
         path: "/manage-current-location",
-        element: <PrivateLayout>
-          <ManageCurrentLocation />
-        </PrivateLayout>,
+        element: (
+          <PrivateLayout>
+            <ManageCurrentLocation />
+          </PrivateLayout>
+        )
       },
       {
         path: "/add-current-location",
-        element: <PrivateLayout>
-          <AddCurrentLocation />
-        </PrivateLayout>,
+        element: (
+          <PrivateLayout>
+            <AddCurrentLocation />
+          </PrivateLayout>
+        )
       },
       {
         path: "/manage-flipping",
-        element: <PrivateLayout>
-          <ManageFlipping />
-        </PrivateLayout>,
+        element: (
+          <PrivateLayout>
+            <ManageFlipping />
+          </PrivateLayout>
+        )
       },
       {
         path: "/manage-bank",
@@ -122,19 +147,23 @@ export const router = createBrowserRouter([
           <SuperAdminLayout>
             <ManageBank />
           </SuperAdminLayout>
-        ),
+        )
       },
       {
         path: "/manage-group",
-        element: <PrivateLayout>
-          <ManageGroup />
-        </PrivateLayout>,
+        element: (
+          <PrivateLayout>
+            <ManageGroup />
+          </PrivateLayout>
+        )
       },
       {
         path: "/manage-location",
-        element: <PrivateLayout>
-          <ManageLocation />
-        </PrivateLayout>,
+        element: (
+          <PrivateLayout>
+            <ManageLocation />
+          </PrivateLayout>
+        )
       },
       {
         path: "/manage-order",
@@ -142,27 +171,33 @@ export const router = createBrowserRouter([
           <PrivateLayout>
             <ManageOrder />
           </PrivateLayout>
-        ),
+        )
       },
       {
         path: "/manage-analytics/:id",
-        element: <PrivateLayout>
-          <ManageAnalytics />
-        </PrivateLayout>,
+        element: (
+          <PrivateLayout>
+            <ManageAnalytics />
+          </PrivateLayout>
+        )
       },
       {
         path: "/manage-support",
-        element: <PrivateLayout>
-          <ManageSupport />
-        </PrivateLayout>,
+        element: (
+          <PrivateLayout>
+            <ManageSupport />
+          </PrivateLayout>
+        )
       },
       {
         path: "/add-faq",
-        element: <PrivateLayout>
-          <AddFaq />
-        </PrivateLayout>,
-      },
-    ],
+        element: (
+          <PrivateLayout>
+            <AddFaq />
+          </PrivateLayout>
+        )
+      }
+    ]
   },
   {
     path: "/sign-up",
@@ -171,7 +206,7 @@ export const router = createBrowserRouter([
         <SignUp />
       </RootLayout>
     ),
-    errorElement: <ErrorPage />,
+    errorElement: <ErrorPage />
   },
   {
     path: "/sign-up-successful",
@@ -180,7 +215,7 @@ export const router = createBrowserRouter([
         <SignUpSuccess />
       </RootLayout>
     ),
-    errorElement: <ErrorPage />,
+    errorElement: <ErrorPage />
   },
   {
     path: "/sign-in",
@@ -189,7 +224,7 @@ export const router = createBrowserRouter([
         <SignIn />
       </RootLayout>
     ),
-    errorElement: <ErrorPage />,
+    errorElement: <ErrorPage />
   },
   {
     path: "/forgot-password",
@@ -198,7 +233,7 @@ export const router = createBrowserRouter([
         <ForgotPassword />
       </RootLayout>
     ),
-    errorElement: <ErrorPage />,
+    errorElement: <ErrorPage />
   },
   {
     path: "/forgot-password-otp/:email",
@@ -207,7 +242,7 @@ export const router = createBrowserRouter([
         <ForgotVerificationCode />
       </RootLayout>
     ),
-    errorElement: <ErrorPage />,
+    errorElement: <ErrorPage />
   },
   {
     path: "/verification-code",
@@ -218,6 +253,6 @@ export const router = createBrowserRouter([
         {/* </PrivateLayout> */}
       </RootLayout>
     ),
-    errorElement: <ErrorPage />,
-  },
+    errorElement: <ErrorPage />
+  }
 ]);

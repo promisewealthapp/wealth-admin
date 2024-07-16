@@ -27,32 +27,32 @@ export type IGenericErrorMessage = {
 export enum UserRole {
   USER = "user",
   ADMIN = "admin",
-  SUPER_ADMIN = "superAdmin",
+  SUPER_ADMIN = "superAdmin"
 }
 
 export enum UserGender {
   MALE = "male",
   FEMALE = "female",
   TRANSGENDER = "transgender",
-  OTHERS = "others",
+  OTHERS = "others"
 }
 
 export enum UserStatus {
   PENDING = "pending",
   APPROVED = "approved",
-  DENIED = "denied",
+  DENIED = "denied"
 }
 
 export enum VerificationOtpType {
   CREATE_USER = "createUser",
-  FORGOT_PASSWORD = "forgotPassword",
+  FORGOT_PASSWORD = "forgotPassword"
 }
 
 export enum PropertyStatus {
   SOLD = "sold",
   AVAILABLE = "available",
   PENDING = "pending",
-  DENIED = "denied",
+  DENIED = "denied"
 }
 
 export enum PropertyType {
@@ -60,35 +60,35 @@ export enum PropertyType {
   SEMI_DETACHED_HOUSE = "semiDetachedHouse",
   DETACHED_HOUSE = "detachedHouse",
   FINISHED = "finished",
-  UNFINISHED = "unFinished",
+  UNFINISHED = "unFinished"
 }
 
 export enum OrderStatus {
   PENDING = "pending",
   SUCCESS = "success",
-  DENIED = "denied",
+  DENIED = "denied"
 }
 
 export enum OrderRefName {
   CROWD_FUND = "crowdFund",
   FLIPPING = "flipping",
-  PROPERTY = "property",
+  PROPERTY = "property"
 }
 
 export enum OrderPaymentType {
   PAYSTACK = "paystack",
-  MANUAL = "manual",
+  MANUAL = "manual"
 }
 
 export enum BankType {
   USD = "usd",
-  NAIRA = "naira",
+  NAIRA = "naira"
 }
 
 export enum ChatGroupType {
   PUBLIC = "public",
   ADMIN = "admin",
-  CHAMPION = "champion",
+  CHAMPION = "champion"
 }
 
 export interface User {
@@ -297,7 +297,7 @@ export interface Feedback {
   ownBy: User;
 }
 
-export interface Promotion {
+export interface IPromotion {
   id: string;
   title: string;
   date: Date;
@@ -316,7 +316,7 @@ export interface PromotionInterest {
   ownBy: User;
   createdAt: Date;
   updatedAt: Date;
-  promotion: Promotion;
+  promotion: IPromotion;
   promotionId: string;
 }
 

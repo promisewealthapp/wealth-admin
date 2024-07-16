@@ -13,10 +13,12 @@ import { FaLocationDot } from "react-icons/fa6";
 import { BiSolidMessageError } from "react-icons/bi";
 import { useAppSelector } from "../../redux/hook";
 import { UserRole } from "../../types/common";
+import { PiUsersFourLight } from "react-icons/pi";
+import { MdOutlineGroupAdd } from "react-icons/md";
 
 const Sidebar = () => {
   const { pathname } = useLocation();
-  const { user } = useAppSelector(state => state.user);
+  const { user } = useAppSelector((state) => state.user);
 
   const sidebarLinksSuperAdmin = [
     {
@@ -26,26 +28,26 @@ const Sidebar = () => {
           path: "/",
           Icon: RxDashboard,
           label: "Dashboard",
-          relativePath2: "",
+          relativePath2: ""
         },
         {
           path: "/manage-admins",
           relativePath: "/make-admin",
           Icon: LiaUserCogSolid,
-          label: "Manage Admins",
+          label: "Manage Admins"
         },
         {
           path: "/manage-champions",
           relativePath: "/make-champion",
           Icon: ImStatsDots,
-          label: "Manage Champions",
+          label: "Manage Champions"
         },
         {
           path: "/manage-user",
           Icon: FaRegUser,
-          label: "Manage User",
-        },
-      ],
+          label: "Manage User"
+        }
+      ]
     },
     {
       item: "Properties",
@@ -55,20 +57,35 @@ const Sidebar = () => {
           Icon: LuPalmtree,
           label: "Manage Crowdfunding",
           relativePath: "/add-crowdfunding",
-          relativePath2: "/edit-crowdfunding",
+          relativePath2: "/edit-crowdfunding"
         },
         {
           path: "/manage-current-location",
           Icon: HiOutlineBuildingOffice2,
           label: "Manage Current Location",
-          relativePath: "/add-current-location",
+          relativePath: "/add-current-location"
         },
         {
           path: "/manage-flipping",
           Icon: IoHomeOutline,
-          label: "Manage Flipping",
+          label: "Manage Flipping"
+        }
+      ]
+    },
+    {
+      item: "Promotion",
+      navs: [
+        {
+          path: "/promotion",
+          label: "Manage Promotions",
+          Icon: PiUsersFourLight
         },
-      ],
+        {
+          path: "/promotion/create",
+          label: "Add new Promotions",
+          Icon: MdOutlineGroupAdd
+        }
+      ]
     },
     {
       item: "Others",
@@ -76,31 +93,31 @@ const Sidebar = () => {
         {
           path: "/manage-bank",
           Icon: CiBank,
-          label: "Manage Bank",
+          label: "Manage Bank"
         },
         {
           path: "/manage-group",
           Icon: HiOutlineUserGroup,
-          label: "Manage Group",
+          label: "Manage Group"
         },
         {
           path: "/manage-order",
           Icon: BiMessageSquareDetail,
-          label: "Manage Order",
+          label: "Manage Order"
         },
         {
           path: "/manage-location",
           Icon: FaLocationDot,
-          label: "Manage Location",
+          label: "Manage Location"
         },
         {
           path: "/manage-support",
           Icon: BiSolidMessageError,
           label: "Manage Support(AI)",
-          relativePath: "/add-faq",
-        },
-      ],
-    },
+          relativePath: "/add-faq"
+        }
+      ]
+    }
   ];
 
   const sidebarLinksAdmin = [
@@ -112,21 +129,21 @@ const Sidebar = () => {
           Icon: LuPalmtree,
           label: "Manage Crowdfunding",
           relativePath: "/add-crowdfunding",
-          relativePath2: "/edit-crowdfunding",
+          relativePath2: "/edit-crowdfunding"
         },
         {
           path: "/manage-current-location",
           Icon: HiOutlineBuildingOffice2,
           label: "Manage Current Location",
-          relativePath2: "",
+          relativePath2: ""
         },
         {
           path: "/manage-flipping",
           Icon: IoHomeOutline,
           label: "Manage Flipping",
-          relativePath2: "",
-        },
-      ],
+          relativePath2: ""
+        }
+      ]
     },
     {
       item: "Others",
@@ -135,34 +152,34 @@ const Sidebar = () => {
           path: "/manage-group",
           Icon: HiOutlineUserGroup,
           label: "Manage Group",
-          relativePath2: "",
+          relativePath2: ""
         },
         {
           path: "/manage-order",
           Icon: BiMessageSquareDetail,
-          label: "Manage Order",
+          label: "Manage Order"
         },
         {
           path: "/manage-location",
           Icon: FaLocationDot,
-          label: "Manage Location",
+          label: "Manage Location"
         },
         {
           path: "/manage-support",
           Icon: BiSolidMessageError,
           label: "Manage Support(AI)",
-          relativePath: "/add-faq",
-        },
-      ],
-    },
+          relativePath: "/add-faq"
+        }
+      ]
+    }
   ];
 
   let sidebarItems;
   if (user?.role === UserRole.SUPER_ADMIN) {
-    sidebarItems = sidebarLinksSuperAdmin
+    sidebarItems = sidebarLinksSuperAdmin;
   }
   if (user?.role === UserRole.ADMIN) {
-    sidebarItems = sidebarLinksAdmin
+    sidebarItems = sidebarLinksAdmin;
   }
   return (
     <div className="lg:border-r border-[#DDDDDD] lg:pl-5 2xl:pl-7 space-y-2 2xl:space-y-5">
@@ -174,31 +191,34 @@ const Sidebar = () => {
               <div key={nav.label}>
                 <Link
                   to={nav.path}
-                  className={`relative flex items-center gap-2 2xl:gap-3 pl-2 lg:pl-4 hover:bg-textDark hover:rounded-[10px]  hover:text-white hover:font-semibold group py-1.5 2xl:py-2 ${pathname === nav.path ||
+                  className={`relative flex items-center gap-2 2xl:gap-3 pl-2 lg:pl-4 hover:bg-textDark hover:rounded-[10px]  hover:text-white hover:font-semibold group py-1.5 2xl:py-2 ${
+                    pathname === nav.path ||
                     pathname === nav.relativePath ||
                     pathname === nav?.relativePath2
-                    ? "text-white font-semibold bg-textDark rounded-[10px]"
-                    : "text-textSecondary"
-                    }`}
+                      ? "text-white font-semibold bg-textDark rounded-[10px]"
+                      : "text-textSecondary"
+                  }`}
                 >
                   <div
-                    className={`w-9 h-9 flex items-center justify-center rounded-full group-hover:bg-[#494949] p-1 ${pathname === nav.path ||
+                    className={`w-9 h-9 flex items-center justify-center rounded-full group-hover:bg-[#494949] p-1 ${
+                      pathname === nav.path ||
                       pathname === nav.relativePath ||
                       pathname === nav?.relativePath2
-                      ? "bg-[#494949]"
-                      : "bg-[#F5F5F6]"
-                      }`}
+                        ? "bg-[#494949]"
+                        : "bg-[#F5F5F6]"
+                    }`}
                   >
                     <nav.Icon className="text-xl " />
                   </div>
                   <p className="">{nav.label}</p>
                   <div
-                    className={`group-hover:bg-[#EC9414] absolute h-4 w-1 right-0 top-[35%] rounded-l ${pathname === nav.path ||
+                    className={`group-hover:bg-[#EC9414] absolute h-4 w-1 right-0 top-[35%] rounded-l ${
+                      pathname === nav.path ||
                       pathname === nav.relativePath ||
                       pathname === nav?.relativePath2
-                      ? "bg-[#EC9414]"
-                      : ""
-                      }`}
+                        ? "bg-[#EC9414]"
+                        : ""
+                    }`}
                   ></div>
                 </Link>
               </div>

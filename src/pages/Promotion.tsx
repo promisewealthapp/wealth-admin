@@ -12,6 +12,7 @@ import {
 import { Avatar } from "antd";
 import { IoLocationOutline } from "react-icons/io5";
 import { toast } from "react-toastify";
+import AppModal from "../components/ui/AppModal";
 
 type Props = {};
 
@@ -35,6 +36,7 @@ const Promotion = (props: Props) => {
         info={queryData}
         showData={(data) => {
           const mainData = data.data as IPromotion[];
+          console.log(mainData);
           return (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
               {mainData.map((single) => (
@@ -62,16 +64,46 @@ const Promotion = (props: Props) => {
                     </h2>
                   </div>
                   <div>
-                    <Avatar.Group size={"small"}>
-                      {single.interesteds.slice(0, 3).map((inter) => (
-                        <Avatar src={inter.ownBy.profileImg} />
-                      ))}
-                    </Avatar.Group>
-                    {single.interesteds.length ? (
-                      <div>{single.interesteds.length} Going</div>
-                    ) : null}
+                    <p className="mt-1 mb-[14px] text-[16px]  text-black">
+                      {single.description}
+                    </p>
                   </div>
-                  <div className="flex  items-center gap-2">
+                  <AppModal
+                    title="Interested peoples"
+                    button={
+                      <div className="flex cursor-pointer gap-2">
+                        <Avatar.Group size={"small"}>
+                          {single.interesteds.slice(0, 3).map((inter) => (
+                            <Avatar src={inter.ownBy.profileImg} />
+                          ))}
+                        </Avatar.Group>
+                        {single.interesteds.length ? (
+                          <div>{single.interesteds.length} Going</div>
+                        ) : null}
+                      </div>
+                    }
+                  >
+                    <div className="w-[300px] md:w-[340px] max-h-[400px] overflow-y-auto gap-3 grid">
+                      {single.interesteds.map((interesdSingle) => (
+                        <div
+                          className="flex bg-red-50/50 p-2 rounded items-center gap-2"
+                          key={interesdSingle.id}
+                        >
+                          <Avatar
+                            size={45}
+                            src={interesdSingle.ownBy.profileImg}
+                          ></Avatar>
+                          <div>
+                            <h2 className="text-bold text-lg">
+                              {interesdSingle.ownBy.name}
+                            </h2>
+                            <p>{interesdSingle.ownBy.email}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </AppModal>
+                  <div className="flex mt-2 items-center gap-2">
                     <div>
                       <IoLocationOutline color="#2B2849"></IoLocationOutline>
                     </div>

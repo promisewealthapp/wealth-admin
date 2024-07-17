@@ -9,5 +9,6 @@ export enum tagTypes {
   flipping = "flipping",
   bank = "bank",
   faq = "faq",
+  promotion = "promotion"
 }
 export const tagTypesList = Object.values(tagTypes);

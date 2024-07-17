@@ -30,6 +30,7 @@ const AddNewProperty = ({ propertyId, closeModal }: TAddNewPropertyState) => {
       ...data,
       propertyId
     };
+    console.log(submitData);
     await addPropertyState(submitData)
       .unwrap()
       .then((res: any) => {
@@ -74,6 +75,7 @@ const AddNewProperty = ({ propertyId, closeModal }: TAddNewPropertyState) => {
             control={control}
             name="time"
             placeholder="Select Date"
+            className="h-[40px]"
           />
           {/* <input id="price" className={`input ${errors.price && 'border-2 border-bgred  '}`} placeholder="Type your account number" {...register("price", { required: true, valueAsNumber: true })} /> */}
 

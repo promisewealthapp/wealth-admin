@@ -5,11 +5,11 @@ import authSlice from "../features/auth/authSlice";
 export const store = configureStore({
   reducer: {
     [apiSlice.reducerPath]: apiSlice.reducer,
-    user: authSlice,
+    user: authSlice
   },
   devTools: process.env.NODE_ENV !== "production",
   middleware: (getDefaultMiddlewares) =>
-    getDefaultMiddlewares().concat(apiSlice.middleware),
+    getDefaultMiddlewares().concat(apiSlice.middleware)
 });
 export type AppDispatch = typeof store.dispatch;
 export const useAppDispatch: () => AppDispatch = useDispatch;

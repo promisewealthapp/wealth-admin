@@ -146,6 +146,21 @@ const Sidebar = () => {
       ]
     },
     {
+      item: "Promotion",
+      navs: [
+        {
+          path: "/promotion",
+          label: "Manage Promotions",
+          Icon: PiUsersFourLight
+        },
+        {
+          path: "/promotion/create",
+          label: "Add new Promotions",
+          Icon: MdOutlineGroupAdd
+        }
+      ]
+    },
+    {
       item: "Others",
       navs: [
         {

@@ -19,7 +19,7 @@ const Promotion = (props: Props) => {
   const queryData = useGetPromotionsQuery("");
   const [deletePromotion, { isLoading }] = useDeletePromotionMutation();
   const handleDelete = (id: string) => {
-    deletePromotion(id + "d")
+    deletePromotion(id)
       .unwrap()
       .then((res) => {
         toast.success("Successfully Delete!");
@@ -36,7 +36,7 @@ const Promotion = (props: Props) => {
         showData={(data) => {
           const mainData = data.data as IPromotion[];
           return (
-            <div className="grid grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
               {mainData.map((single) => (
                 <div className="p-[9px] rounded-2xl shadow" key={single.id}>
                   <div className="h-[200px] relative overflow-hidden rounded-lg">
@@ -82,7 +82,8 @@ const Promotion = (props: Props) => {
                   <div>
                     <button
                       onClick={() => handleDelete(single.id)}
-                      className="mt-4 mb-2 font-bold text-sm p-4 py-1 bg-red-300 rounded "
+                      disabled={isLoading}
+                      className="mt-4 mb-2 font-bold text-sm p-4 py-1 bg-red-300 rounded hover:bg-red-400 transition-all "
                     >
                       Delete
                     </button>

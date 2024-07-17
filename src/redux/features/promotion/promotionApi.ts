@@ -1,7 +1,9 @@
 import { apiSlice } from "../apiSlice/apiSlice";
+import { tagTypes } from "../apiSlice/tagTypesList";
 export const promotionApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getPromotions: builder.query({
+      providesTags: [tagTypes.promotion],
       query: (query) => {
         return {
           url: `/promotion?${query}`
@@ -12,9 +14,10 @@ export const promotionApi = apiSlice.injectEndpoints({
       query: (id) => `/promotions/${id}`
     }),
     addPromotion: builder.mutation({
+      invalidatesTags: [tagTypes.promotion],
       query: (info) => {
         return {
-          url: "/promotions",
+          url: "/promotion",
           method: "POST",
           body: info
         };
@@ -30,6 +33,7 @@ export const promotionApi = apiSlice.injectEndpoints({
       }
     }),
     deletePromotion: builder.mutation({
+      invalidatesTags: [tagTypes.promotion],
       query: (id) => {
         return {
           url: `/promotion/${id}`,

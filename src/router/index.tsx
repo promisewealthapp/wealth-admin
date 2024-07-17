@@ -30,6 +30,7 @@ import SuperAdminLayout from "../layouts/SuperAdminLayout";
 import PrivateLayout from "../layouts/PrivateLayout";
 import AddCurrentLocation from "../pages/AddCurrentLocation";
 import Promotion from "../pages/Promotion";
+import AddPromotion from "../pages/AddPromotion";
 
 export const router = createBrowserRouter([
   {
@@ -90,6 +91,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateLayout>
             <Promotion />
+          </PrivateLayout>
+        )
+      },
+      {
+        path: "/promotion/create",
+        element: (
+          <PrivateLayout>
+            <AddPromotion />
           </PrivateLayout>
         )
       },
